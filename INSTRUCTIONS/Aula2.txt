@@ -1,0 +1,47 @@
+DIAGRAMANDO AS TABELAS
+
+ - cadastro de hábitos,
+ - dias
+ - habitos dos dias (relaciona dias com os habitos)
+
+ criar os models no arquivo schema.prisma
+ rodar o npx prisma migrate
+
+
+ no schema, criar as relações entre as tabelas 
+ migrate novamente
+
+ ------ prisma ERD generator -----
+info no site: https://www.npmjs.com/package/prisma-erd-generator
+ 
+gera um grafico das tabelas do DB
+instalar as deps - npm i -D prisma-erd-generator @mermaid-js/mermaid-cli
+
+npx prisma generate - cria um arquivo de visualização
+
+
+------ criar Seeds para o banco de dados ------
+DOC - https://www.prisma.io/docs/guides/database/seed-database
+1- adicionar o script de criação de seeds no package.json
+  - trocar ts-node por tsx
+2 - na pasta prisma - criar um arquivo de prisma seed.ts e trazer a estrutura da doc
+3 - criar um registro na tabela habits, dentro da função MAIN
+4 - rodar npx prisma db seed
+*** utilizamos um arquivo pronto de seeds
+
+------ Separar os arquivos do server de acordo com suas funcoes ------
+
+comunicação do banco - pasta /src/lib
+- prisma.ts - chama a variável prisma
+- routes.ts - cria as rotas
+
+
+------ Crias Rotas ------
+instalar biblioteca ZOD - npm i zod
+ - ela cria um schema para os requests, como o YUP
+ - dayjs - lib para ajustar melhor a questao de dia.
+ - criar um novo hábito (dentro do habito criar os dias)
+ - testar se a criação deu certo no thunderclient
+
+ - criar a rota de buscar um dia com suas tarefas
+ 

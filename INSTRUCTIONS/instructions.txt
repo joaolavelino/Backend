@@ -1,0 +1,41 @@
+0 - Instalar Node e NPM
+
+1 - Criar projeto: `npm init -y` - flag -i inicia o projeto com dados padrão
+2 - instalar Fastify `npm i fastify` - Framework substituto do Express para construir o BackEnd
+3 - Habilitar TS no node:  
+  3.1 - instalar TS como dev dependency - `npm i typescript -D` - flag -D instala apenas no ambiente dev
+  3.2 - habilitar TS: `npx tsc --init` - cria o tsconfig.json
+  3.3 - instalar TSX: `npm i tsx -D` - permite o node rodar TS sem fazer conversões
+  COMANDO PARA RODAR O ARQUIVO - `npx tsx src/server.ts`
+
+4 - Iniciar o projeto, importando o Fastify, Criando uma rota de teste
+
+5 - Iniciando o banco de dados com PRISMA
+  5.1 - Instalando o Prisma
+    Prisma é um ORM (object-relational mapping) - `npm i -D prisma` e `npm i @prisma/client` 
+    (essa segunda não será em Dev, será quem irá acessar o banco de dados)
+  5.2 - Iniciando o Banco de Dados:
+    `npx prisma init --datasource-provider SQLite` (define o tipo de DB que será usado) 
+    - Criou o arquivo schema.prisma
+
+6 - Criar o primeiro model - ver arquivo schema.prisma
+  o model é uma tabela, ou uma collection (no caso do mongo).
+  @@map(' ') - define o nome dessa tabela
+
+7 - Rodar o Migrate - para atualizar o banco de dados com a nova estrutura feita
+  `npx prisma migrate dev` - ele cria uma pasta com migrations, e o arquivo dev.db
+
+8 - `npx prisma studio` - cria uma interface no navegador para visualizar o banco de dados
+
+----- COMO ACESSAR OS DADOS DO BANCO -----
+
+1 - importar PrismaClient do @prisma/client
+2 - criar a variavel desse cliente - const prisma = new PrismaClient
+3 - criar as rotas
+
+----- CONFIGURAR CORS -----
+1 - instalar @fastify/cors - extensao do fastify para confuguração do CORS
+2 - importar o cors no arquivo server.ts
+3 - registrar o cors : `app.register(cors)`
+4 - se fosse criar restrição de origem das chamadas, é só colocar um objeto como 2o argumento:
+  {origin: ['http://localhost:3000]}
